@@ -1,4 +1,3 @@
-#include <iostream>
 #include "IntegerSet.h"
 
 int main() {
