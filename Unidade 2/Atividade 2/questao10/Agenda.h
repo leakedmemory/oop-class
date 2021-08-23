@@ -5,7 +5,7 @@
 
 class Agenda {
     public:
-        Agenda() { agendamentos = 0; }
+        Agenda(int=1);
         ~Agenda();
 
         void armazenaPessoa(string, int, float);
@@ -19,8 +19,9 @@ class Agenda {
 
         inline int quantidadeAgendamentos() const { return agendamentos; }
     private:
-        Pessoa *pessoas[10];
+        Pessoa *pessoas;
         int agendamentos;
+        int quantidadePessoas;
 };
 
 #endif

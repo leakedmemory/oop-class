@@ -3,19 +3,25 @@
 
 using namespace std;
 
-void Agenda::armazenaPessoa(string nome, int idade, float altura) {
-    (pessoas[agendamentos]) = new Pessoa(nome, idade, altura);
-    agendamentos++;
+Agenda::Agenda(int quantidadePessoas) {
+    this->quantidadePessoas = quantidadePessoas;
+    this->agendamentos = 0;
+    pessoas = new Pessoa[quantidadePessoas];
 }
 
 Agenda::~Agenda() {
     for (int index = 0; index < agendamentos; index++) {
-        delete pessoas[index];
+        delete &(pessoas[index]);
     }
 }
 
+void Agenda::armazenaPessoa(string nome, int idade, float altura) {
+    pessoas[agendamentos] = Pessoa(nome, idade, altura);
+    agendamentos++;
+}
+
 void Agenda::armazenaPessoa(Pessoa &pessoa) {
-    pessoas[agendamentos] = &(pessoa);
+    pessoas[agendamentos] = pessoa;
     agendamentos++;
 }
 
@@ -23,9 +29,9 @@ void Agenda::removePessoa(string nome) {
     bool flag = false;
 
     for (int i = 0; i < agendamentos; i++) {
-        if (pessoas[i]->getNome() == nome) {
+        if (pessoas[i].getNome() == nome) {
             if (agendamentos == 1) {
-                pessoas[i] = nullptr;
+                delete &pessoas[0];
             } else {
                 int j = i;
 
@@ -34,7 +40,7 @@ void Agenda::removePessoa(string nome) {
                     j++;
 
                     if (j == agendamentos) {
-                        pessoas[j] = nullptr;
+                        delete &pessoas[j];
                     }
                 }
             }
@@ -57,7 +63,7 @@ int Agenda::buscaPessoa(string nome) const {
         bool flag = false;
 
         for (int index = 0; index < agendamentos; index++) {
-            if (pessoas[index]->getNome() == nome) {
+            if (pessoas[index].getNome() == nome) {
                 return index+1;
             }
         }
@@ -74,14 +80,14 @@ void Agenda::imprimePessoa(int i) const {
     if (i > agendamentos) {
         cout << "Não há ninguém com esse número." << endl;
     } else {
-        pessoas[i-1]->print();
+        pessoas[i-1].print();
     }
 }
 
 void Agenda::imprimePovo() const {
     if (agendamentos) {
         for (int index = 0; index < agendamentos; index++) {
-            cout << pessoas[index]->getNome() << endl;
+            cout << pessoas[index].getNome() << endl;
         }
     } else {
         cout << "Não há nenhum agendamento." << endl;
