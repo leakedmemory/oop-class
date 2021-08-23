@@ -79,3 +79,67 @@ bool Array::operator==(const Array &obj) const
   
   return true;
 }
+
+int &Array::operator[](int i)
+{
+  if (i < 0 || i >= tam)
+  {
+    cerr << "Erro: Indice " << i << " fora de faixa." << endl;
+
+    exit(1);
+  }
+
+  return arr[i];
+}
+
+int Array::operator[](int i) const
+{
+  if (i < 0 || i >= tam)
+  {
+    cerr << "Erro: Indice " << i << " fora de faixa." << endl;
+
+    exit(1);
+  }
+
+  return arr[i];
+}
+
+Array Array::operator+(const Array &arr) const
+{
+    int tamanho = this->tam + arr.tam;
+    Array retorno(tamanho);
+    int *newArray = new int[tamanho];
+    int util = 0;
+
+    for (int index = 0; index < tamanho; index++) {
+        if (index < this->tam) {
+            newArray[index] = this->arr[index];
+        } else {
+            newArray[index] = arr[util];
+            util++;
+        }
+    }
+
+    retorno.arr = newArray;
+    return retorno;
+}
+
+void Array::operator+=(const Array &arr)
+{
+    Array tmp(*this);
+    delete [] this->arr;
+
+    int tamanho = tmp.tam + arr.tam;
+    this->arr = new int[tamanho];
+    this->tam = tamanho;
+    int util = 0;
+
+    for (int index = 0; index < tamanho; index++) {
+        if (index < tmp.tam) {
+            this->arr[index] = tmp[index];
+        } else {
+            this->arr[index] = arr[util];
+            util++;
+        }
+    }
+}

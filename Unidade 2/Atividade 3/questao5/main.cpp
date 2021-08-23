@@ -4,27 +4,19 @@
 using namespace std;
 
 int main() {
-  Array a1(7);  //array de 7 elementos
-  Array a2;     //array de 10 elementos
+    Array a1(4);
+    Array a2(3);
 
-  cin >> a1;    //lendo array 
+    cin >> a1;
+    cin >> a2;
 
-  cout << a1;   //escrevendo array
+    Array a3 = a1 + a2;
 
-  if (a1 == a2)
-    cout << "a1 e a2 são iguais";
+    cout << a3;
 
-  Array a3(a1);
+    a3 += a1;
 
-  a3[5] = 100; //invoca int &operator[](int)
+    cout << a3;
 
-  cout << "a3[5] == " << a3[5] << endl;  //int operator[](int) const
-
-  a2 = a3;
-
-  cout << "a2[5] == " << a3[5] << endl;
-
-  a2[100] = 50;
-
-  return 0;
+    return 0;
 }
