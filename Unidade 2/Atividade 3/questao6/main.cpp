@@ -4,22 +4,20 @@
 int main() {
   IntegerSet set1;
 
-  int arr[] = {10,20,50};
-  IntegerSet set2(arr,3);
+  int arr[] = {10, 20, 30, 50};
+  IntegerSet set2(arr, 4);
 
-  set1.insertElement(10);
-  set2.deleteElement(50);
+  set1 << 10;
+  set2 >> 50;
 
+  cout << set1;
+  cout << set2;
 
-  set1.print();
-  set2.print();
+  IntegerSet set3 = set1 | set2;
+  IntegerSet set4 = set1 & set2;
 
-
-  IntegerSet set3 = unionOfSets(set1,set2);
-  IntegerSet set4 = intersectionOfSets(set1,set2);
-
-  set3.print();
-  set4.print();
+  cout << set3;
+  cout << set4;
 
   return 0;
 }
