@@ -39,3 +39,28 @@ Complex Complex::operator++(int) {
 
     return tmp;
 }
+
+Complex Complex::operator-(const Complex &number) const {
+    double a = this->real - number.real;
+    double b = this->imaginary - number.imaginary;
+
+    Complex result(a, b);
+    return result;
+}
+
+void Complex::operator-=(const Complex &number) {
+    this->real -= number.real;
+    this->imaginary -= number.imaginary;
+}
+
+Complex &Complex::operator--() {
+    this->real -= 1;
+    return *this;
+}
+
+Complex Complex::operator--(int) {
+    Complex tmp = *this;
+    this->real -= 1;
+
+    return tmp;
+}

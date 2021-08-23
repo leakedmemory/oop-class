@@ -18,6 +18,12 @@ public:
     Complex &operator++();
     Complex operator++(int);
 
+    // Operadores de subtração
+    Complex operator-(const Complex &) const;
+    void operator-=(const Complex &);
+    Complex &operator--();
+    Complex operator--(int);
+
 private:
     double real;
     double imaginary;
