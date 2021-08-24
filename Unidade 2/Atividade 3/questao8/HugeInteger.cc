@@ -1,12 +1,19 @@
-#include "HugeInteger.h"
-
 #include <iostream>
-using std::cout, std::endl;
-
 #include <cstring>
 #include <cctype>
+#include "HugeInteger.h"
 
 #define MAX(a,b) ((a>b)?a:b)
+
+using namespace std;
+
+ostream &operator<<(ostream &out, const HugeInteger &number) {
+  for (int i = number.tam - 1 ; i >= 0 ; i--)
+    out << number.num[i];
+
+  out << endl;
+  return out;
+}
 
 HugeInteger::HugeInteger(const char *n)
 {
@@ -103,6 +110,36 @@ bool HugeInteger::isGreaterThan(const HugeInteger &n2) const
       return false;
 
     if (num[i] > n2.num[i])
+      return true;
+  }
+  
+  return false;
+}
+
+bool HugeInteger::operator==(const HugeInteger &number) const {
+  if (this->tam != number.tam)
+    return false;
+  
+  for (int i = 0 ; i < tam ; i++)
+    if (this->num[i] != number.num[i])
+      return false;
+
+  return true;
+}
+
+bool HugeInteger::operator>(const HugeInteger &number) const {
+  if (this->tam > number.tam)
+    return true;
+  
+  if (this->tam < number.tam)
+    return false;
+  
+  for (int i = tam - 1 ; i >= 0 ; i--)
+  { 
+    if (this->num[i] < number.num[i])
+      return false;
+
+    if (this->num[i] > number.num[i])
       return true;
   }
   

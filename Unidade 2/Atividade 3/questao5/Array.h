@@ -31,7 +31,6 @@ public:
   int &operator[](int); //permite modificar o elemento
   int operator[](int) const; //não permite modificar o elemento
 
-  // Feitos por mim
   Array operator+(const Array &) const;
   void operator+=(const Array &);
 
