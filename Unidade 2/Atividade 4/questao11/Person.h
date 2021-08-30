@@ -11,6 +11,7 @@ class Person
 friend ostream &operator<<(ostream &, const Person &);
 
 public:
+    Person() {}
     Person(string name) { setName(name); }
 
     inline string getName() const { return this->name; }

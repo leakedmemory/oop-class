@@ -8,10 +8,10 @@ class Employee: public PhysicalPerson
 friend ostream &operator<<(ostream &, const Employee &);
 
 public:
-    Employee();
+    Employee() {}
     Employee(string, unsigned long, string, double, int, int);
 
-    double grossSalary();
+    double grossSalary() const;
 
     inline string getRegistration() const {
         return this->registration;

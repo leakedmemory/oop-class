@@ -6,6 +6,7 @@
 class PhysicalPerson: public Person
 {
 public:
+    PhysicalPerson() {}
     PhysicalPerson(string, unsigned long int);
 
     inline unsigned long int getCPF() const { return this->CPF; } 

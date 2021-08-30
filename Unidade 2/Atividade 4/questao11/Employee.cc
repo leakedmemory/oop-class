@@ -18,6 +18,6 @@ Employee::Employee(
 ) : PhysicalPerson(name, CPF), registration(registration), salary(salary),
     monthlyHours(monthlyHours), monthlyWorkedHours(monthlyWorkedHours) {}
 
-double Employee::grossSalary() {
+double Employee::grossSalary() const {
     return (salary * monthlyWorkedHours/monthlyHours);
 }

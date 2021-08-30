@@ -7,11 +7,13 @@
 
 class Company: public LegalPerson
 {
+friend ostream &operator<<(ostream &, const Company &);
+
 public:
     Company(string, unsigned long, string);
 
-    void hireEmployee(Employee &);
-    void addClient(Client &);
+    void hireEmployee(const Employee &);
+    void addClient(const Client &);
 
     void listEmployees() const;
     void listClients() const;
@@ -20,7 +22,10 @@ public:
 
 private:
     Employee employees[5];
+    unsigned employeesCounter = 0;
+
     Client clients[5];
+    unsigned clientsCounter = 0;
 };
 
 #endif

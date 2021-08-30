@@ -8,7 +8,7 @@ class Client: public PhysicalPerson
 friend ostream &operator<<(ostream &, const Client &);
 
 public:
-    Client();
+    Client() {}
     Client(string, unsigned long, unsigned long, string);
 
     inline unsigned long getPhoneNumber() const {
