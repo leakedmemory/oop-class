@@ -6,14 +6,14 @@
 class PhysicalPerson: public Person
 {
 public:
-    PhysicalPerson(string, unsigned long int);
+    PhysicalPerson(string, unsigned long);
 
-    inline unsigned long int getCPF() const { return this->CPF; } 
-    inline void setCPF(unsigned long int CPF) { this->CPF = CPF; }
+    inline unsigned long getCPF() const { return this->CPF; } 
+    inline void setCPF(unsigned long CPF) { this->CPF = CPF; }
 
 private:
     string name;
-    unsigned long int CPF;
+    unsigned long CPF;
 };
 
 #endif

@@ -4,7 +4,7 @@
 int main() {
     PhysicalPerson physicalPerson("Lohan", 12345678900);
     LegalPerson legalPerson(
-        "Petrobrás", 1234567891234500, "Petróleo Brasileiro S.A"
+        "Petróleo Brasileiro S.A", 1234567891234500, "Petrobrás"
     );
 
     cout << physicalPerson;

@@ -19,7 +19,7 @@ public:
         this->socialReason = socialReason;
     }
 
-private:
+protected:
     string socialReason;
     unsigned long CNPJ;
     string name;

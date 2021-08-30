@@ -1,4 +1,4 @@
 #include "PhysicalPerson.h"
 
-PhysicalPerson::PhysicalPerson(string name, unsigned long int CPF) :
+PhysicalPerson::PhysicalPerson(string name, unsigned long CPF) :
     Person(name), CPF(CPF) {}
