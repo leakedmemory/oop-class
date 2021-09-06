@@ -6,12 +6,16 @@
 class FormaBidimensional 
 {
 public:
-  FormaBidimensional(int numLados) : numLados(numLados) { }
+  FormaBidimensional(int numLados) : numLados(numLados) {}
+  virtual ~FormaBidimensional() {}
 
   //método virtual puro
-  virtual void desenhar() = 0;
+  virtual void desenhar() const = 0;
 
-private:
+  virtual int calcularArea() const = 0;
+  virtual int calcularPerimetro() const = 0;
+
+protected:
   int numLados;
 };
 
