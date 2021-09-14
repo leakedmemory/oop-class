@@ -6,3 +6,5 @@ exe
 /tests
 test.cpp
 teste.cpp
+*.out
+main
