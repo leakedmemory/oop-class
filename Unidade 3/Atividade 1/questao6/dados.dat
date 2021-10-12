@@ -9,8 +9,8 @@ UnsignedShortInt 2
 SignedShortInt 2
 LongInt 8
 SignedLongInt 8
-UnsignedLongOnt 8
-LongLongOnt 8
+UnsignedLongInt 8
+LongLongInt 8
 UnsignedLongLongInt 8
 Float 4
 Double 8
