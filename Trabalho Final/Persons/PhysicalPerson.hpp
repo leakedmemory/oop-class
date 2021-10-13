@@ -8,7 +8,7 @@ class PhysicalPerson: public Person
 {
 public:
     PhysicalPerson(std::string, unsigned long);
-    ~PhysicalPerson() final {}
+    ~PhysicalPerson() final;
 
 private:
     unsigned long cpf;

@@ -8,7 +8,7 @@ class LegalPerson: public Person
 {
 public:
     LegalPerson(std::string, unsigned long);
-    ~LegalPerson() final {};
+    ~LegalPerson() final;
 
 private:
     unsigned long cnpj;
