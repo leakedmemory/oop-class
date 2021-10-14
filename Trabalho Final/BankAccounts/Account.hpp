@@ -1,14 +1,12 @@
 #ifndef Account_hpp
 #define Account_hpp
 
-#include <iostream>
-
 #include "../Persons/Person.hpp"
 
 class Account
 {
     friend void operator<<(Account&, double);
-    friend std::istream& operator>>(std::istream&, double);
+    friend void operator>>(Account&, double);
 
 public:
     Account(unsigned, Person*, double=0);
@@ -28,15 +26,14 @@ protected:
     double balance;
 
     virtual void debitPayment(double);
-    virtual void transferMoney(Account&, double);
-    virtual void canTransfer(double);
+    virtual void withdraw(double);
+    void logError(std::exception& e) const;
 
 private:
-    std::string getDate() const;
-    void logError(std::exception& e);
-    void cardPayment(double);
+    std::string getActualDate() const;
+    void cardPayment(double) const;
     void paymentWithCardOrDebit(double, const std::string&);
-    void makePaymentWithCardOrDebit(double, const std::string&);
+    void transferMoney(Account&, double);
 };
 
 #endif

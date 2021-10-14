@@ -5,21 +5,20 @@
 
 class CheckingAccountWithLimit: public RegularCheckingAccount
 {
+    friend void operator>>(CheckingAccountWithLimit&, double);
+
 public:
     CheckingAccountWithLimit(unsigned, Person*, double=0, double=300);
     ~CheckingAccountWithLimit() final;
 
     // virtual void seeStatement() const = 0;
+    double getLimit() const;
 
 private:
-    double actual_limit;
-    double fixed_limit;
+    double limit;
 
     void debitPayment(double) final;
-    void makeDebitPayment(double);
-    void debitWithLimit(double);
-    void transferMoney(Account&, double) final;
-    void canTransfer(double) final;
+    void withdraw(double) final;
 };
 
 #endif

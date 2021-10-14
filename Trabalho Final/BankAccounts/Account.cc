@@ -1,3 +1,4 @@
+#include <iostream>
 #include <sstream>
 
 #include "Account.hpp"
@@ -6,6 +7,12 @@
 
 void operator<<(Account& account, double value) {
     account.balance += value;
+    // Implementar deposito
+}
+
+void operator>>(Account& account, double value) {
+    account.withdraw(value);
+    // Implementar retirada
 }
 
 Account::Account(unsigned accountNumber, Person* owner, double balance) {
@@ -16,7 +23,15 @@ Account::Account(unsigned accountNumber, Person* owner, double balance) {
 
 Account::~Account() {}
 
-std::string Account::getDate() const {
+void Account::withdraw(double value) {
+    if (this->balance - value < 0) {
+        throw InsufficientFundsError();
+    }
+
+    this->balance -= value;
+}
+
+std::string Account::getActualDate() const {
     time_t now = time(0);
     tm *ltm = localtime(&now);
     unsigned day = ltm->tm_mday;
@@ -28,7 +43,7 @@ std::string Account::getDate() const {
     return oss.str();
 }
 
-void Account::logError(std::exception& e) {
+void Account::logError(std::exception& e) const {
     std::cout << e.what() << std::endl;
 }
 
@@ -43,13 +58,7 @@ void Account::makePayment(double value, const std::string& type) {
 void Account::paymentWithCardOrDebit(double value, const std::string& type) {
     if (type != "credito" && type != "debito") {
         throw InvalidPaymentMethodError();
-    }
-
-    this->makePaymentWithCardOrDebit(value, type);
-}
-
-void Account::makePaymentWithCardOrDebit(double value, const std::string& type) {
-    if (type == "debito") {
+    } else if (type == "debito") {
         this->debitPayment(value);
     } else {
         this->cardPayment(value);
@@ -57,15 +66,11 @@ void Account::makePaymentWithCardOrDebit(double value, const std::string& type) 
 }
 
 void Account::debitPayment(double value) {
-    if (this->balance - value < 0) {
-        throw InsufficientFundsError();
-    }
-
-    this->balance -= value;
+    this->withdraw(value);
     // Implementar transação
 }
 
-void Account::cardPayment(double value) {
+void Account::cardPayment(double value) const {
     // Implementar transação
 }
 
@@ -78,17 +83,9 @@ void Account::transfer(Account& destination, double value) {
 }
 
 void Account::transferMoney(Account& destination, double value) {
-    canTransfer(value);
-
-    this->balance -= value;
+    this->withdraw(value);
     destination.balance += value;
     // Implementar transação NAS DUAS CONTAS
-}
-
-void Account::canTransfer(double value) {
-    if (this->balance - value < 0) {
-        throw InsufficientFundsError();
-    }
 }
 
 unsigned Account::getAccountNumber() const {
