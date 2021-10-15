@@ -1,6 +1,8 @@
 #ifndef Account_hpp
 #define Account_hpp
 
+#include <vector>
+
 #include "../Persons/Person.hpp"
 
 class Account
@@ -12,26 +14,26 @@ public:
     Account(unsigned, Person*, double=0);
     virtual ~Account();
 
-    // virtual void seeStatement() const = 0;
+    virtual void seeStatement() const = 0;
     void makePayment(double, const std::string&);
     void transfer(Account&, double);
-
-    unsigned getAccountNumber() const;
-    std::string getOwnersName() const;
-    double getBalance() const;
 
 protected:
     unsigned accountNumber;
     Person* owner;
     double balance;
+    std::vector<std::string> transactions;
 
-    virtual void debitPayment(double);
     virtual void withdraw(double);
     void logError(std::exception& e) const;
+    void addTransaction(double, const std::string&);
+    unsigned short getTransactionsSize() const;
+    void printLast30Transactions() const;
 
 private:
     std::string getActualDate() const;
-    void cardPayment(double) const;
+    void cardPayment(double);
+    void debitPayment(double);
     void paymentWithCardOrDebit(double, const std::string&);
     void transferMoney(Account&, double);
 };

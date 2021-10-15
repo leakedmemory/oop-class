@@ -11,13 +11,11 @@ public:
     CheckingAccountWithLimit(unsigned, Person*, double=0, double=300);
     ~CheckingAccountWithLimit() final;
 
-    // virtual void seeStatement() const = 0;
     double getLimit() const;
 
 private:
     double limit;
 
-    void debitPayment(double) final;
     void withdraw(double) final;
 };
 

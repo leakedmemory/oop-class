@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "CheckingAccountWithLimit.hpp"
 #include "Exceptions/InsufficientFundsError.hpp"
 #include "Exceptions/LimitExceededError.hpp"
@@ -5,7 +7,7 @@
 void operator>>(CheckingAccountWithLimit& account, double value) {
     try {
         account.withdraw(value);
-        // Implementar retirada
+        account.addTransaction(value, "retirada");
     } catch(std::exception& e) {
         account.logError(e);
     }
@@ -14,7 +16,7 @@ void operator>>(CheckingAccountWithLimit& account, double value) {
 CheckingAccountWithLimit::CheckingAccountWithLimit(
     unsigned accountNumber, Person* owner, double balance, double limit
 ) : RegularCheckingAccount(accountNumber, owner, balance) {
-    this->limit = limit * -1;
+    this->limit = (limit > 0) ? -limit : -300;
 }
 
 CheckingAccountWithLimit::~CheckingAccountWithLimit() {}
@@ -27,11 +29,6 @@ void CheckingAccountWithLimit::withdraw(double value) {
     this->balance -= value;
 }
 
-void CheckingAccountWithLimit::debitPayment(double value) {
-    this->withdraw(value);
-    // Implementar transação
-}
-
 double CheckingAccountWithLimit::getLimit() const {
-    return this->limit * -1;
+    return -this->limit;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 #include "Account.hpp"
 #include "Exceptions/InvalidPaymentMethodError.hpp"
@@ -7,18 +8,22 @@
 
 void operator<<(Account& account, double value) {
     account.balance += value;
-    // Implementar deposito
+    account.addTransaction(value, "deposito");
 }
 
 void operator>>(Account& account, double value) {
-    account.withdraw(value);
-    // Implementar retirada
+    try {
+        account.withdraw(value);
+        account.addTransaction(value, "retirada");
+    } catch(std::exception& e) {
+        account.logError(e);
+    }
 }
 
 Account::Account(unsigned accountNumber, Person* owner, double balance) {
     this->accountNumber = accountNumber;
     this->owner = owner;
-    this->balance = balance;
+    this->balance = (balance >= 0) ? balance : 0;
 }
 
 Account::~Account() {}
@@ -67,11 +72,11 @@ void Account::paymentWithCardOrDebit(double value, const std::string& type) {
 
 void Account::debitPayment(double value) {
     this->withdraw(value);
-    // Implementar transação
+    this->addTransaction(value, "debito");
 }
 
-void Account::cardPayment(double value) const {
-    // Implementar transação
+void Account::cardPayment(double value) {
+    this->addTransaction(value, "credito");
 }
 
 void Account::transfer(Account& destination, double value) {
@@ -85,17 +90,33 @@ void Account::transfer(Account& destination, double value) {
 void Account::transferMoney(Account& destination, double value) {
     this->withdraw(value);
     destination.balance += value;
-    // Implementar transação NAS DUAS CONTAS
+
+    this->addTransaction(value, "transferência");
+    destination.addTransaction(value, "recebido");
 }
 
-unsigned Account::getAccountNumber() const {
-    return this->accountNumber;
+void Account::addTransaction(double value, const std::string& type) {
+    std::ostringstream oss, number;
+
+    number << "R$" << std::fixed << std::setprecision(2) << value;
+    std::string tmp = number.str();
+
+    oss << this->getActualDate() << " " << tmp << " " << type;
+
+    this->transactions.push_back(oss.str());
 }
 
-std::string Account::getOwnersName() const {
-    return this->owner->getName();
+unsigned short Account::getTransactionsSize() const {
+    unsigned short transactions = (
+        (this->transactions.size() < 30) ? this->transactions.size() : 30
+    );
+
+    return transactions;
 }
 
-double Account::getBalance() const {
-    return this->balance;
+void Account::printLast30Transactions() const {
+    unsigned short size = this->getTransactionsSize();
+    for (unsigned short i = 0, k = this->transactions.size() - size; i < size; i++, k++) {
+        std::cout << this->transactions[k] << std::endl;
+    }
 }

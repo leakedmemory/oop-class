@@ -7,7 +7,7 @@ class Person
 {
 public:
     Person(std::string);
-    virtual ~Person();
+    virtual ~Person() = 0;
 
     std::string getName() const;
 

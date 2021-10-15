@@ -9,7 +9,7 @@ public:
     RegularCheckingAccount(unsigned, Person*, double=0);
     ~RegularCheckingAccount() override;
 
-    // virtual void seeStatement() const = 0;
+    void seeStatement() const final;
 };
 
 #endif
