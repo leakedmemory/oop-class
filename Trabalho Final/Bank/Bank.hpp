@@ -13,12 +13,15 @@ public:
     Bank(std::string, unsigned long);
     ~Bank() final;
 
-    void listHoldersAccounts(Account&) const;
+    void listHoldersAccounts(const Person&) const;
     void listRegisteredAccounts() const;
 
+    void addAccount(Account*);
+    void addHolder(Person*);
+
 private:
-    std::vector<Person> holders;
-    std::vector<Account> accounts;
+    std::vector<Person*> holders;
+    std::vector<Account*> accounts;
 };
 
 #endif

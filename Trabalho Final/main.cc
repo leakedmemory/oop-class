@@ -7,7 +7,8 @@
 #include "BankAccounts/CheckingAccountWithLimit.hpp"
 #include "Bank/Bank.hpp"
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 int main() {
     PhysicalPerson lohan("Lohan", 123);
@@ -18,22 +19,11 @@ int main() {
     RegularCheckingAccount a(456, &lohan, 300);
     CheckingAccountWithLimit h(789, &julia, 500, -1);
 
-    n << 200;
-    n >> 100;
-    n.transfer(h, 50);
-    n.seeStatement();
-    cout << endl;
-
-    h >> 700;
-    h << 370;
-    h.transfer(a, 64);
-    h.seeStatement();
-    cout << endl;
-
-    a.makePayment(40, "debito");
-    a.makePayment(30, "credito");
-    a << 20;
-    a.seeStatement();
+    Bank bb("bb", 135);
+    bb.addAccount(&n);
+    bb.addAccount(&a);
+    bb.listRegisteredAccounts();
+    bb.listHoldersAccounts(lohan);
 
     return 0;
 }

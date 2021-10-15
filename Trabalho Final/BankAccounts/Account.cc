@@ -120,3 +120,22 @@ void Account::printLast30Transactions() const {
         std::cout << this->transactions[k] << std::endl;
     }
 }
+
+unsigned Account::getAccountNumber() const {
+    return this->accountNumber;
+}
+
+std::string Account::getOwnersName() const {
+    return this->owner->getName();
+}
+
+std::string Account::getBalance() const {
+    std::ostringstream oss;
+    oss << "R$" << std::fixed << std::setprecision(2) << this->balance;
+
+    return oss.str();
+}
+
+Person* Account::getOwner() const {
+    return this->owner;
+}

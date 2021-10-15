@@ -51,5 +51,6 @@
     "sstream": "cpp",
     "ctime": "cpp",
     "iomanip": "cpp"
-  }
+  },
+  "cSpell.words": ["fout"]
 }

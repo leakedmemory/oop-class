@@ -18,6 +18,11 @@ public:
     void makePayment(double, const std::string&);
     void transfer(Account&, double);
 
+    unsigned getAccountNumber() const;
+    std::string getOwnersName() const;
+    std::string getBalance() const;
+    Person* getOwner() const;
+
 protected:
     unsigned accountNumber;
     Person* owner;
