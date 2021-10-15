@@ -18,6 +18,8 @@ public:
     void makePayment(double, const std::string&);
     void transfer(Account&, double);
 
+    void setAccountNumber(unsigned);
+    void setOwnersName(std::string);
     unsigned getAccountNumber() const;
     std::string getOwnersName() const;
     std::string getBalance() const;

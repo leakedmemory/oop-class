@@ -14,7 +14,7 @@ void operator>>(CheckingAccountWithLimit& account, double value) {
 }
 
 CheckingAccountWithLimit::CheckingAccountWithLimit(
-    unsigned accountNumber, Person* owner, double balance, double limit
+    unsigned accountNumber, Person* owner, double limit, double balance
 ) : RegularCheckingAccount(accountNumber, owner, balance) {
     this->limit = (limit > 0) ? -limit : -300;
 }

@@ -15,13 +15,18 @@ public:
 
     void listHoldersAccounts(const Person&) const;
     void listRegisteredAccounts() const;
+    bool searchAccount(unsigned);
+    Account* getAccountByNumber(unsigned);
+    std::vector<Person*>* getHolders();
+    std::vector<Account*>* getAccounts();
 
     void addAccount(Account*);
-    void addHolder(Person*);
 
 private:
     std::vector<Person*> holders;
     std::vector<Account*> accounts;
+    
+    void addHolder(Person*);
 };
 
 #endif

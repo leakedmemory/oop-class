@@ -139,3 +139,11 @@ std::string Account::getBalance() const {
 Person* Account::getOwner() const {
     return this->owner;
 }
+
+void Account::setAccountNumber(unsigned number) {
+    this->accountNumber = number;
+}
+
+void Account::setOwnersName(std::string name) {
+    this->owner->setName(name);
+}

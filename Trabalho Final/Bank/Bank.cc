@@ -4,7 +4,7 @@
 
 #include "Bank.hpp"
 
-Bank::Bank(std::string name, unsigned long cnpj) : PhysicalPerson(name, cnpj) {
+Bank::Bank(std::string name, unsigned long cnpj): PhysicalPerson(name, cnpj) {
     // Load archives
 }
 
@@ -12,7 +12,12 @@ Bank::~Bank() {
     std::ofstream fout("data/bank_data.txt", std::ios::out);
 
     for (unsigned i = 0; i < holders.size(); i++) {
-        fout << holders[i]->getName() << std::endl;
+        fout << "H "<< holders[i]->getName() << std::endl;
+        for (unsigned j = 0; j < accounts.size(); j++) {
+            if (accounts[j]->getOwner() == holders[i]) {
+                fout << "A " << accounts[i]->getBalance() << std::endl;
+            }
+        }
     }
 
     fout.close();
@@ -44,4 +49,32 @@ void Bank::addHolder(Person* holder) {
     if(!(std::find(holders.begin(), holders.end(), holder) != holders.end())) {
         holders.push_back(holder);
     }
+}
+
+bool Bank::searchAccount(unsigned number) {
+    for (unsigned i = 0; i < accounts.size(); i++) {
+        if (accounts[i]->getAccountNumber() == number) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+Account* Bank::getAccountByNumber(unsigned number) {
+    for (unsigned i = 0; i < accounts.size(); i++) {
+        if (accounts[i]->getAccountNumber()) {
+            return accounts[i];
+        }
+    }
+
+    return nullptr;
+}
+
+std::vector<Person*>* Bank::getHolders() {
+    return &this->holders;
+}
+
+std::vector<Account*>* Bank::getAccounts() {
+    return &this->accounts;
 }

@@ -8,7 +8,7 @@ class CheckingAccountWithLimit: public RegularCheckingAccount
     friend void operator>>(CheckingAccountWithLimit&, double);
 
 public:
-    CheckingAccountWithLimit(unsigned, Person*, double=0, double=300);
+    CheckingAccountWithLimit(unsigned, Person*, double, double=0);
     ~CheckingAccountWithLimit() final;
 
     double getLimit() const;

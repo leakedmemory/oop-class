@@ -9,6 +9,7 @@ public:
     Person(std::string);
     virtual ~Person() = 0;
 
+    void setName(std::string);
     std::string getName() const;
 
 protected:
