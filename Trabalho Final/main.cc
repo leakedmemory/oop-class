@@ -5,6 +5,7 @@
 #include "BankAccounts/SavingsAccount.hpp"
 #include "BankAccounts/RegularCheckingAccount.hpp"
 #include "BankAccounts/CheckingAccountWithLimit.hpp"
+#include "Bank/Bank.hpp"
 
 using namespace std;
 

@@ -7,5 +7,6 @@ exe
 test.cpp
 teste.cpp
 *.out
+*.o
 main
 lixo.txt
