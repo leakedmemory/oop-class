@@ -276,11 +276,26 @@ std::string Menu::askNewName() {
 void Menu::deleteAccount(unsigned account_number) {
     if (this->bank->searchAccount(account_number)) {
         Account* account = this->bank->getAccountByNumber(account_number);
-        std::vector<Account*>* vector = this->bank->getAccounts();
-        for (unsigned i = 0; i < vector->size(); i++) {
-            if ((*vector)[i] == account) {
-                vector->erase(vector->begin() + i);
+        std::vector<Account*>* accounts = this->bank->getAccounts();
+        for (unsigned i = 0; i < accounts->size(); i++) {
+            if ((*accounts)[i] == account) {
+                accounts->erase(accounts->begin() + i);
                 cout << "Conta removida com sucesso" << endl;
+            }
+        }
+
+        bool flag = true;
+        for (unsigned i = 0; i < accounts->size(); i++) {
+            if ((*accounts)[i]->getOwnersName() == account->getOwnersName()) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            std::vector<Person*>* persons = this->bank->getHolders();
+            for (unsigned i = 0; i < accounts->size(); i++) {
+                if (account->getOwnersName() == (*persons)[i]->getName()) {
+                    persons->erase(persons->begin() + i);
+                }
             }
         }
     } else {

@@ -120,7 +120,7 @@ bool Bank::searchAccount(unsigned number) {
 
 Account* Bank::getAccountByNumber(unsigned number) {
     for (unsigned i = 0; i < accounts.size(); i++) {
-        if (accounts[i]->getAccountNumber()) {
+        if (accounts[i]->getAccountNumber() == number) {
             return accounts[i];
         }
     }
