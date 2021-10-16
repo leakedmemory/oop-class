@@ -292,8 +292,8 @@ void Menu::deleteAccount(unsigned account_number) {
         }
         if (flag) {
             std::vector<Person*>* persons = this->bank->getHolders();
-            for (unsigned i = 0; i < accounts->size(); i++) {
-                if (account->getOwnersName() == (*persons)[i]->getName()) {
+            for (unsigned i = 0; i < persons->size(); i++) {
+                if ((*persons)[i]->getName() == account->getOwnersName()) {
                     persons->erase(persons->begin() + i);
                 }
             }
