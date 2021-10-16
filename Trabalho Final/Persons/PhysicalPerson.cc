@@ -5,3 +5,7 @@ PhysicalPerson::PhysicalPerson(std::string name, unsigned long cpf) : Person(nam
 }
 
 PhysicalPerson::~PhysicalPerson() {}
+
+unsigned long PhysicalPerson::getCPF() const {
+    return this->cpf;
+}

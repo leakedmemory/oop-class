@@ -5,3 +5,7 @@ LegalPerson::LegalPerson(std::string name, unsigned long cnpj) : Person(name) {
 }
 
 LegalPerson::~LegalPerson() {}
+
+unsigned long LegalPerson::getCNPJ() const {
+    return this->cnpj;
+}

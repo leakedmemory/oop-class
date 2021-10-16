@@ -1,7 +1,7 @@
 #ifndef Bank_hpp
 #define Bank_hpp
 
-#include "vector"
+#include <vector>
 
 #include "../Persons/Person.hpp"
 #include "../Persons/PhysicalPerson.hpp"
@@ -25,7 +25,7 @@ public:
 private:
     std::vector<Person*> holders;
     std::vector<Account*> accounts;
-    
+
     void addHolder(Person*);
 };
 

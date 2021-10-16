@@ -22,8 +22,9 @@ public:
     void setOwnersName(std::string);
     unsigned getAccountNumber() const;
     std::string getOwnersName() const;
-    std::string getBalance() const;
+    double getBalance() const;
     Person* getOwner() const;
+    std::vector<std::string>* getTransactions();
 
 protected:
     unsigned accountNumber;

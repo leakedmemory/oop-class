@@ -10,6 +10,8 @@ public:
     LegalPerson(std::string, unsigned long);
     ~LegalPerson() final;
 
+    unsigned long getCNPJ() const;
+
 private:
     unsigned long cnpj;
 };

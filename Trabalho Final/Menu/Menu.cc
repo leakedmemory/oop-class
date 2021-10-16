@@ -144,7 +144,7 @@ Person* Menu::personFactory(short int type) {
 
 std::string Menu::askHolderName() {
     std::string name;
-    cout << "Insira o nome do proprietário nome: ";
+    cout << "Insira o nome do proprietário: ";
     cin >> name;
 
     return name;

@@ -10,6 +10,8 @@ public:
     PhysicalPerson(std::string, unsigned long);
     ~PhysicalPerson() override;
 
+    unsigned long getCPF() const;
+
 private:
     unsigned long cpf;
 };

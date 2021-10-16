@@ -96,12 +96,8 @@ void Account::transferMoney(Account& destination, double value) {
 }
 
 void Account::addTransaction(double value, const std::string& type) {
-    std::ostringstream oss, number;
-
-    number << "R$" << std::fixed << std::setprecision(2) << value;
-    std::string tmp = number.str();
-
-    oss << this->getActualDate() << " " << tmp << " " << type;
+    std::ostringstream oss;
+    oss << this->getActualDate() << "-" << value << "-" << type;
 
     this->transactions.push_back(oss.str());
 }
@@ -129,11 +125,8 @@ std::string Account::getOwnersName() const {
     return this->owner->getName();
 }
 
-std::string Account::getBalance() const {
-    std::ostringstream oss;
-    oss << "R$" << std::fixed << std::setprecision(2) << this->balance;
-
-    return oss.str();
+double Account::getBalance() const {
+    return this->balance;
 }
 
 Person* Account::getOwner() const {
@@ -146,4 +139,8 @@ void Account::setAccountNumber(unsigned number) {
 
 void Account::setOwnersName(std::string name) {
     this->owner->setName(name);
+}
+
+std::vector<std::string>* Account::getTransactions() {
+    return &this->transactions;
 }
