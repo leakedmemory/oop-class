@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "Menu.hpp"
 
@@ -275,6 +276,13 @@ std::string Menu::askNewName() {
 void Menu::deleteAccount(unsigned account_number) {
     if (this->bank->searchAccount(account_number)) {
         Account* account = this->bank->getAccountByNumber(account_number);
+        std::vector<Account*>* vector = this->bank->getAccounts();
+        for (unsigned i = 0; i < vector->size(); i++) {
+            if ((*vector)[i] == account) {
+                vector->erase(vector->begin() + i);
+                cout << "Conta removida com sucesso" << endl;
+            }
+        }
     } else {
         cantFindAccount();
     }
