@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 
 #include "Menu.hpp"
 
@@ -218,7 +217,7 @@ void Menu::queryAccount(unsigned account_number) {
         cout << "Proprietário: " << account->getOwnersName() << endl;
         cout << "Saldo: R$" << account->getBalance() << endl;
     } else {
-        cout << "Conta não encontrada" << endl;
+        cantFindAccount();
     }
 }
 
@@ -228,7 +227,7 @@ void Menu::updateAccount(unsigned account_number) {
         short int change = askChange();
         changeHandler(change, account);
     } else {
-        cout << "Conta não encontrada" << endl;
+        cantFindAccount();
     }
 }
 
@@ -277,7 +276,7 @@ void Menu::deleteAccount(unsigned account_number) {
     if (this->bank->searchAccount(account_number)) {
         Account* account = this->bank->getAccountByNumber(account_number);
     } else {
-        cout << "Conta não encontrada" << endl;
+        cantFindAccount();
     }
 }
 
@@ -289,7 +288,7 @@ void Menu::holderMenu() {
         Account* account = bank->getAccountByNumber(account_number);
         holderLoop(account);
     } else {
-        cout << "ERRO: conta não encontrada" << endl;
+        cantFindAccount();
     }
 }
 
@@ -360,6 +359,10 @@ void Menu::transfer(Account* source, unsigned number) {
         source->transfer(*destination, value);
         cout << "Transferência concluída" << endl;
     } else {
-        cout << "Conta não encontrada" << endl;
+        cantFindAccount();
     }
+}
+
+void Menu::cantFindAccount() const {
+    cout << "Conta não encontrada" << endl;
 }

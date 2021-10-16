@@ -55,6 +55,7 @@ private:
     void transfer(Account*, unsigned);
 
     void errorMessage() const;
+    void cantFindAccount() const;
 };
 
 #endif
